@@ -1,8 +1,14 @@
 import praw
 import time
+from time import strftime, localtime
 from praw import errors
 
-print('Starting bot.')
+
+def log(msg):
+    print('[{}] ThreadBot: {}'.format(strftime("%H:%M:%S", localtime()), msg))
+
+
+log('Starting bot.')
 with open('bot.cfg', 'r') as f:
     log_info = f.read().splitlines()
     user, password = log_info
@@ -17,7 +23,7 @@ sub = r.get_subreddit('all')
 already_done = set()
 runs = 0
 
-print('Ready to run. Starting.')
+log('Ready to run. Starting.')
 
 while True:
     comms = praw.helpers.flatten_tree(sub.get_comments(limit=1500))
@@ -31,14 +37,14 @@ while True:
                     ' ^^^contact ^^^/u/Tkwk33 ^^^via ^^^PM.'.format(r.get_info(thing_id=comment.parent_id).author,
                                                                     comment.author))
                 already_done.add(comment.id)
-                print('Responded to {}'.format(comment.author))
+                log('Responded to {}'.format(comment.author))
             except errors.RateLimitExceeded as e:
-                print(e)
-                print('Sleping for 10 minutes.')
+                log(e)
+                log('Sleping for 10 minutes.')
                 time.sleep(600)
 
     if runs % 200 == 0:
-        print('Still running.')
+        log('Still running.')
         already_done.clear()
 
     runs += 1
