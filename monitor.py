@@ -23,7 +23,7 @@ while True:
     comms = praw.helpers.flatten_tree(sub.get_comments(limit=1500))
 
     for comment in comms:
-        if comment.body.upper() == '/THREAD' and comment.id not in already_done:
+        if '/THREAD ' in comment.body.upper() and comment.id not in already_done:
             try:
                 comment.reply(
                     '##**CONGRATULATIONS /u/{}, YOU HAVE KILLED THE THREAD. EVERYONE GET OUT.**\n\n Closing requested'
