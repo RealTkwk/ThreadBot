@@ -29,13 +29,13 @@ while True:
     comms = praw.helpers.flatten_tree(sub.get_comments(limit=1500))
 
     for comment in comms:
-        if ' /THREAD ' in comment.body.upper() and comment.id not in already_done:
+        if '/THREAD ' in comment.body.upper() and comment.id not in already_done:
             try:
                 comment.reply(
                     '##**CONGRATULATIONS /u/{}, YOU HAVE KILLED THE THREAD. EVERYONE GET OUT.**\n\n Closing requested'
                     ' by /u/{} \n --- \n ^^^This ^^^is ^^^a ^^^bot. ^^^If ^^^there ^^^are ^^^any ^^^issues, ^^^please'
-                    ' ^^^contact ^^^/u/Tkwk33 ^^^via ^^^PM.'.format(r.get_info(thing_id=comment.parent_id).author,
-                                                                    comment.author))
+                    ' ^^^send ^^^a ^^^PM ^^^as ^^^thy\'re ^^^checked ^^^regularly.'.format(
+                        r.get_info(thing_id=comment.parent_id).author,comment.author))
                 already_done.add(comment.id)
                 log('Responded to {}'.format(comment.author))
             except errors.RateLimitExceeded as e:
