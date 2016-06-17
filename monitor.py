@@ -34,7 +34,7 @@ while True:
                 comment.reply(
                     '##**CONGRATULATIONS /u/{}, YOU HAVE KILLED THE THREAD. EVERYONE GET OUT.**\n\n Closing requested'
                     ' by /u/{} \n --- \n ^^^This ^^^is ^^^a ^^^bot. ^^^If ^^^there ^^^are ^^^any ^^^issues, ^^^please'
-                    ' ^^^send ^^^a ^^^PM ^^^as ^^^thy\'re ^^^checked ^^^regularly.'.format(
+                    ' ^^^send ^^^a ^^^PM ^^^as ^^^they\'re ^^^checked ^^^regularly.'.format(
                         r.get_info(thing_id=comment.parent_id).author,comment.author))
                 already_done.add(comment.id)
                 log('Responded to {}'.format(comment.author))
